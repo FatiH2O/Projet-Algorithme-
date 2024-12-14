@@ -5,14 +5,28 @@ public class Main {
         
         
         Hybridetries tree = new Hybridetries();
-        tree.insertKey("haaa");
-        tree.insertKey("haaaoooo");
+        tree.insertKey("aa");
+        System.out.println("*****");
+       // tree.insertKey("hoo");
+        System.out.println("*****");
+
+        tree.insertKey("jjj");
+        System.out.println("*****");
+
+       tree.insertKey("jja");
+        System.out.println("*****");
+
+      //  tree.insertKey("ja");
+         System.out.println("*****");
+
+       //s tree.insertKey("salam");
         
-       tree.afficherArbreRec();
+        
+        
+       
       
-    }
-
+    
 }
-
-/*           javac Main.java
+}
+/*            javac Main.java
               java Main            */
