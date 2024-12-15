@@ -1,4 +1,8 @@
 
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.w3c.dom.Node;
 
 public class Hybridetries  {
 
@@ -236,7 +240,96 @@ public Hybridetries insertKey(String key) {
      }
 
     }
+
+   /*public  ArrayList<String>  ListeMots(Hybridetries arbre){
+
+    String temp="";
+    ArrayList<String>  mots=new ArrayList<>();// ne pas se soucier de la taile et de l'indice
+
+    //if(arbre.isEmpty()) return ; 
+     
+    if(!arbre.isEmpty()){
+       temp=temp+ arbre.getrac().getRa();
+       if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==false){
+        mots.add(temp);
+        arbre.getrac().setVisited();
+        return ListeMots(arbre);
+       }
+       else if (arbre.getrac().getcpt()==0){
+        if(arbre.eq!=null&&!arbre.isEmpty()){ 
+
+            return(mots.add(temp+ListeMots(arbre.eq)));}
+        
     
+       }
+       else if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==true){
+        
+       }
+
+    }
+
+   }
+
+   public String getEq(Hybridetries arbre,String temp){
+
+    if(!arbre.isEmpty()){
+        if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==false){
+         arbre.getrac().setVisited();
+         return temp=temp+ arbre.getrac().getRa();
+        }
+        else if (arbre.getrac().getcpt()==0){
+         
+             return getEq(arbre.eq, temp+arbre.getrac().getRa());
+            }
+   }
+
+   public String getSup(Hybridetries arbre,String temp){
+    if(arbre.isEmpty()) return temp;
+
+    return getSup(arbre.sup, temp);
+          
+   }*/
+
+   public static void ListeMots(Hybridetries arbre){
+   }
+
+    public static Set<String> ajout_mots(Hybridetries abr_courant , String mot_courrant, Set<String> words){
+                
+        if (abr_courant.isEmpty()) {
+            return words;
+        }
+
+        if (!abr_courant.inf.isEmpty()){
+            ajout_mots(abr_courant.inf, mot_courrant, words);
+
+        }
+
+        if (!abr_courant.sup.isEmpty()){
+             ajout_mots(abr_courant.sup, mot_courrant, words);
+        }
+         // Ajouter le caractère actuel au mot en construction
+        
+        if(abr_courant.getrac().getcpt()==0){ 
+          mot_courrant += abr_courant.getrac().getRa();
+          ajout_mots(abr_courant.eq, mot_courrant, words);
+
+        }
+        else if(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==true){
+                ajout_mots(abr_courant.eq, mot_courrant, words);
+
+        }else/*(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==false)*/{
+            mot_courrant += abr_courant.getrac().getRa();
+            abr_courant.getrac().setVisited();
+            words.add(mot_courrant);
+            ajout_mots(abr_courant.eq, mot_courrant, words);
+
+        }
+       
+
+        
+
+        
+    }
 
 
 
