@@ -1,8 +1,43 @@
+
+
 public class Hybridetries  {
+
+    /*classe racine = couple char int pour marquer la fin d'un mot */
+    public class Racine{
+        public Racine(char ra,int cpt,boolean visited){
+            this.ra=ra;
+            this.cpt=cpt; //pour marquer la fin d'un mot
+            this.visited=visited; //pour e pas compter les mots deux fois
+        }
+        private char ra;
+        private int cpt;
+        private boolean visited;
+
+        public char getRa(){
+            return ra;
+        }
+
+        public void setRa(char ra ){
+            this.ra=ra;
+        }
+
+        public int getcpt(){
+            return cpt;
+        }
+
+        public void setcpt(int cpt ){
+            this.cpt=cpt;
+        }
+
+
+    }
+
+    /*Fin classe racine  */
+
 
     //constructeur abr vide
     public Hybridetries(){
-        this.racine='/';
+        this.racine= new Racine('/',0),false);
         this.inf = null;
         this.eq = null;
         this.sup = null;
@@ -13,14 +48,15 @@ public class Hybridetries  {
     private Hybridetries eq;
     private Hybridetries inf;
     private Hybridetries sup;
-    private char racine;
-    private int cpt=0;
+    private  Racine racine ;
+    private static int end_word=0;
 
     // charAt(), substring(), isEmpty() dans la bibli String
 
     //primitive sur le clé 
 
-    public char firstchar(String key) {
+    /*recuperer la première lettre de la clé */
+    public static char firstchar(String key) {
         
         if (key != null && !key.isEmpty()) {
             return key.charAt(0);  
@@ -29,7 +65,7 @@ public class Hybridetries  {
         return '0';
 
     }
-
+/*récuperer la cle sans la première lettre */
     public static String remaining(String key){
 
         if (key != null && !key.isEmpty()) {
@@ -39,6 +75,8 @@ public class Hybridetries  {
         return "0";
      }
 
+
+//pas utilisé pour l'instant
     public static char chari(String key,int i) {
         try{
         if (key != null && !key.isEmpty()) {
@@ -52,6 +90,7 @@ public class Hybridetries  {
 
     }
 
+    /*longeur de la clé */
     public static int length(String key) {
 
         return key.length();
@@ -59,18 +98,30 @@ public class Hybridetries  {
 
     //Primitive abr
 
+    /*arbre vide ou pas */
     public  boolean  isEmpty(){
-       return this.racine== '/';
+       return this.racine.getRa()=='/'&&this.racine.getcpt()==0;
        
     }
-
-    public char getrac(){
-        return racine;
+    /*recuper racine  */
+    public Racine getrac(){
+        return this.racine;
     }
     
-     public char setRac(char k){
-        return racine= k;
+     public void setRac(char k){
+        this.racine.setRa(k);
     }
+
+    public int getCpt(){
+        return end_word;
+    }
+
+    public void setCpt(){
+        end_word++;
+}
+    public void set_end_of_word(){
+        this.racine.setcpt(end_word);
+    };
 
    
 public Hybridetries insertKey(String key) {
@@ -78,88 +129,103 @@ public Hybridetries insertKey(String key) {
     if (this.isEmpty()) {
        
         if (key.length() == 1) {
-            System.out.println("FIN"+ this.firstchar(key));
-            this.setRac(firstchar(key));  
+          //  System.out.println("FIN"+ this.firstchar(key.toLowerCase()));
+            this.setRac(firstchar(key.toLowerCase()));
+            this.setCpt();
+            this.set_end_of_word();
+            System.out.println(" FIN " + this.getrac().getRa()+ " "+ this.getrac().getcpt());
+
             this.inf = new Hybridetries();  
             this.eq = new Hybridetries();
             this.sup = new Hybridetries();
+            return this;
             
         } else { 
-            System.out.println("EQ " + this.firstchar(key));
-            this.setRac(firstchar(key));  
+            //System.out.println("EQ " + this.firstchar(key.toLowerCase()));
+            this.setRac(firstchar(key.toLowerCase()));
+            System.out.println("EQ " + this.getrac().getRa()+ " "+ this.getrac().getcpt());  
             this.inf = new Hybridetries();  
             this.eq = new Hybridetries();
             this.sup = new Hybridetries();  
-            return this.eq.insertKey(remaining(key)); 
+            this.eq.insertKey(remaining(key)); 
         }
     } else {
         char p = firstchar(key); 
-        System.out.println("helo");
+       
       
-        if (p < this.getrac()) {
-            System.out.println("INF " +this.firstchar(key));
+        if (p < this.getrac().getRa()) {
+            System.out.println("INF " +this.firstchar(key.toLowerCase()));
            
-            return this.inf = this.inf.insertKey(key);  
+            this.inf = this.inf.insertKey(key);  
         }
       
-        else if (p > this.getrac()) {
-            System.out.println("SUP " +this.firstchar(key));
+        else if (p > this.getrac().getRa()) {
+            System.out.println("SUP " +this.firstchar(key.toLowerCase()));
             
-           return this.sup = this.sup.insertKey(key);
+            this.sup = this.sup.insertKey(key.toLowerCase());
            
 
         }
        
         else {
             System.out.println("eqBIS " + this.firstchar(key));
-            if(key.length()==1){return this;}
+            if(key.length()==1&&this.getrac().getcpt()==0){ 
+                this.setCpt();
+                this.set_end_of_word();
+                return this;}
 
-           if (this.eq.isEmpty()) {
-                System.out.println("im empty");
-                  if(chari(key,1)>getrac()||chari(key,1)<getrac()){
-                   return this.insertKey(remaining(key));
-                  }
-                    
-            }
-            return this.eq = this.eq.insertKey(remaining(key));
+            this.eq = this.eq.insertKey(remaining(key.toLowerCase()));
             
         }
     }
-    return this; 
+    return this;
 }
 
 
-/*public void afficherArbreRec() {
-    
-    if (this.isEmpty()) {
-        System.out.print("je suis vide");
-        return; 
-    }
+    public boolean  Recherche(Hybridetries arbre,String mot){
 
-    System.out.print(racine );
-   
-    
-    if (eq != null && !eq.isEmpty()) {
+     if(mot==" "){System.out.println("false " + this.getrac().getcpt());return false;}
+
+     char p = firstchar(mot.toLowerCase());
+     
        
-        System.out.println("->eq->");
-        eq.afficherArbreRec();
+     if(this.isEmpty()){System.out.println("false " + this.getrac().getcpt());return false;}
+
+     if (p < this.getrac().getRa()) {
+           return inf.Recherche(this.inf, mot.toLowerCase());  
+        }
+      
+     else if (p > this.getrac().getRa()) {
+            return sup.Recherche(this.sup,mot.toLowerCase());
+        }
+       
+     else {
+            if(mot.length()==1&&this.getrac().getcpt()!=0){System.out.println("true " + this.getrac().getcpt());return true;}
+            else if (mot.length()==1){System.out.println("false " + this.getrac().getcpt()); return false;}
+
+           return  eq.Recherche(this.eq,remaining(mot.toLowerCase()));  
+        }
         
     }
 
-   
-    if (inf != null && !inf.isEmpty()) {
-        inf.afficherArbreRec();
-    }
-
     
-    if (sup != null && !sup.isEmpty()) {
-        System.out.println("->sup->");
-        sup.afficherArbreRec();
-    }
+    public int ComptageMots(Hybridetries arbre){
 
+
+     if(arbre.isEmpty()) return 0; 
+     
+       
+     if(arbre.getrac().getcpt()!=0){
+     return 1+ ComptageMots(arbre.eq)+ComptageMots(arbre.sup)+ ComptageMots(arbre.inf);
+     }else{
+        return ComptageMots(arbre.eq)+ComptageMots(arbre.sup)+ ComptageMots(arbre.inf);
+     }
+
+    }
     
-   
-}*/
+
+
+
 
 
        

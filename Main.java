@@ -1,25 +1,63 @@
 public class Main {
 
+  
+
     public static void main(String[] args) {
 
         
         
-        Hybridetries tree = new Hybridetries();
-        tree.insertKey("aa");
-        System.out.println("*****");
-       // tree.insertKey("hoo");
-        System.out.println("*****");
+      Hybridetries tree = new Hybridetries();
 
-        tree.insertKey("jjj");
-        System.out.println("*****");
+      String exple_de_base = "A quel genial professeur de dactylographie sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?";
 
-       tree.insertKey("jja");
-        System.out.println("*****");
+      String[] words=exple_de_base.split(" ");
 
-      //  tree.insertKey("ja");
-         System.out.println("*****");
+     for(String word : words){
+        tree.insertKey(word);
+        System.out.println("****");
 
-       //s tree.insertKey("salam");
+      }
+      
+     
+      for(String word : words){
+        
+        tree.Recherche(tree,word);
+        
+      }
+
+      int nb_mots= tree.ComptageMots(tree);
+      System.out.println("NB mot "+ nb_mots);
+
+      /*tree.insertKey("ha");
+      System.out.println("****");
+      tree.insertKey("hao");
+      System.out.println("****");
+      tree.insertKey("za");
+      System.out.println("****");
+      tree.insertKey("hai");
+      System.out.println("****");
+      tree.insertKey("haa");
+      System.out.println("****");
+      tree.insertKey("bi");
+      System.out.println("****");
+      tree.insertKey("haotgf");
+      System.out.println("****");
+      tree.insertKey("haotgf");
+
+      tree.Recherche(tree, "za");
+      tree.Recherche(tree, "hai");
+      tree.Recherche(tree, "haa");
+      tree.Recherche(tree, "ha");
+      tree.Recherche(tree, "hao"); 
+      tree.Recherche(tree, "bi");
+      tree.Recherche(tree, "haotgf");
+      tree.Recherche(tree, "hiiiiiii");
+      tree.Recherche(tree, "h");*/
+
+      
+        
+  
+
         
         
         
