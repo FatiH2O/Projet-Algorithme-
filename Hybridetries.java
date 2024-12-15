@@ -29,6 +29,14 @@ public class Hybridetries  {
             this.cpt=cpt;
         }
 
+        public boolean getVisited(){
+            return visited;
+        }
+
+        public void setVisited(){
+            visited= true;
+        }
+
 
     }
 
@@ -37,7 +45,7 @@ public class Hybridetries  {
 
     //constructeur abr vide
     public Hybridetries(){
-        this.racine= new Racine('/',0),false);
+        this.racine= new Racine('/',0,false);
         this.inf = null;
         this.eq = null;
         this.sup = null;
@@ -169,10 +177,16 @@ public Hybridetries insertKey(String key) {
        
         else {
             System.out.println("eqBIS " + this.firstchar(key));
-            if(key.length()==1&&this.getrac().getcpt()==0){ 
+            if(key.length()==1&&this.getrac().getcpt()==0){ //afin de marquer la fin d'un nouveau mot préfixe d'un autre mot qui était dja dans le dico
                 this.setCpt();
                 this.set_end_of_word();
-                return this;}
+                return this;
+            }
+            else if(key.length()==1&&this.getrac().getcpt()!=0){
+                System.out.println(" FIN mot deja dans le dico " + this.getrac().getcpt());
+                this.setCpt();
+                return this;//on ne fait rien car mot deja ds le dico
+            }
 
             this.eq = this.eq.insertKey(remaining(key.toLowerCase()));
             
@@ -211,12 +225,12 @@ public Hybridetries insertKey(String key) {
     
     public int ComptageMots(Hybridetries arbre){
 
-
      if(arbre.isEmpty()) return 0; 
      
        
-     if(arbre.getrac().getcpt()!=0){
-     return 1+ ComptageMots(arbre.eq)+ComptageMots(arbre.sup)+ ComptageMots(arbre.inf);
+     if(arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==false){//si pas visité et c'est un mots on rajoute 1
+        arbre.getrac().setVisited();
+        return 1+ ComptageMots(arbre.eq)+ComptageMots(arbre.sup)+ ComptageMots(arbre.inf);
      }else{
         return ComptageMots(arbre.eq)+ComptageMots(arbre.sup)+ ComptageMots(arbre.inf);
      }

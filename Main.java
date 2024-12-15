@@ -23,6 +23,7 @@ public class Main {
         
         tree.Recherche(tree,word);
         
+        
       }
 
       int nb_mots= tree.ComptageMots(tree);
