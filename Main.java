@@ -1,3 +1,4 @@
+
 public class Main {
 
   
@@ -18,16 +19,23 @@ public class Main {
 
       }
       
+
      
-      for(String word : words){
+      /*for(String word : words){
         
         tree.Recherche(tree,word);
         
         
       }
 
+      
       int nb_mots= tree.ComptageMots(tree);
-      System.out.println("NB mot "+ nb_mots);
+      System.out.println("NB mot "+ nb_mots);*/
+
+      tree. ListeMots(tree);
+      System.out.println(tree. ListeMots(tree).size());
+
+
 
       /*tree.insertKey("ha");
       System.out.println("****");

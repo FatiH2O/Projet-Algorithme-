@@ -1,8 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
-
-import org.w3c.dom.Node;
 
 public class Hybridetries  {
 
@@ -241,59 +241,10 @@ public Hybridetries insertKey(String key) {
 
     }
 
-   /*public  ArrayList<String>  ListeMots(Hybridetries arbre){
+   
 
-    String temp="";
-    ArrayList<String>  mots=new ArrayList<>();// ne pas se soucier de la taile et de l'indice
-
-    //if(arbre.isEmpty()) return ; 
-     
-    if(!arbre.isEmpty()){
-       temp=temp+ arbre.getrac().getRa();
-       if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==false){
-        mots.add(temp);
-        arbre.getrac().setVisited();
-        return ListeMots(arbre);
-       }
-       else if (arbre.getrac().getcpt()==0){
-        if(arbre.eq!=null&&!arbre.isEmpty()){ 
-
-            return(mots.add(temp+ListeMots(arbre.eq)));}
-        
-    
-       }
-       else if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==true){
-        
-       }
-
-    }
-
-   }
-
-   public String getEq(Hybridetries arbre,String temp){
-
-    if(!arbre.isEmpty()){
-        if (arbre.getrac().getcpt()!=0&&arbre.getrac().getVisited()==false){
-         arbre.getrac().setVisited();
-         return temp=temp+ arbre.getrac().getRa();
-        }
-        else if (arbre.getrac().getcpt()==0){
-         
-             return getEq(arbre.eq, temp+arbre.getrac().getRa());
-            }
-   }
-
-   public String getSup(Hybridetries arbre,String temp){
-    if(arbre.isEmpty()) return temp;
-
-    return getSup(arbre.sup, temp);
-          
-   }*/
-
-   public static void ListeMots(Hybridetries arbre){
-   }
-
-    public static Set<String> ajout_mots(Hybridetries abr_courant , String mot_courrant, Set<String> words){
+   /// fonction utilisé pour ListeMots()
+    public  Set<String> ajout_mots(Hybridetries abr_courant , String mot_courrant, Set<String> words){
                 
         if (abr_courant.isEmpty()) {
             return words;
@@ -311,25 +262,39 @@ public Hybridetries insertKey(String key) {
         
         if(abr_courant.getrac().getcpt()==0){ 
           mot_courrant += abr_courant.getrac().getRa();
-          ajout_mots(abr_courant.eq, mot_courrant, words);
+          return ajout_mots(abr_courant.eq, mot_courrant, words);
 
         }
         else if(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==true){
-                ajout_mots(abr_courant.eq, mot_courrant, words);
+                return ajout_mots(abr_courant.eq, mot_courrant, words);
 
-        }else/*(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==false)*/{
+        }else if(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==false){
             mot_courrant += abr_courant.getrac().getRa();
             abr_courant.getrac().setVisited();
             words.add(mot_courrant);
-            ajout_mots(abr_courant.eq, mot_courrant, words);
+            return ajout_mots(abr_courant.eq, mot_courrant, words);
 
         }
-       
-
-        
-
-        
+        return words;
     }
+
+    public  ArrayList<String> ListeMots(Hybridetries arbre){
+        Set<String> mots= new HashSet<>();
+        Set<String> temp = ajout_mots(arbre , "", mots);
+        ArrayList<String> res= new ArrayList<>();
+
+        for(String words : temp){
+            res.add(words);
+        }
+        Collections.sort(res);
+        
+        for(String words : res){
+            System.out.println(words);
+        }
+        return res;
+    }
+
+    //public boolean verif()
 
 
 
