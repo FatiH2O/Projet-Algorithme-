@@ -141,7 +141,7 @@ public Hybridetries insertKey(String key) {
     if (this.isEmpty()) {
        
         if (key.length() == 1) {
-          //  System.out.println("FIN"+ this.firstchar(key.toLowerCase()));
+          
             this.setRac(firstchar(key.toLowerCase()));
             this.setCpt();
             this.set_end_of_word();
@@ -153,7 +153,7 @@ public Hybridetries insertKey(String key) {
             return this;
             
         } else { 
-            //System.out.println("EQ " + this.firstchar(key.toLowerCase()));
+            
             this.setRac(firstchar(key.toLowerCase()));
             System.out.println("EQ " + this.getrac().getRa()+ " "+ this.getrac().getcpt());  
             this.inf = new Hybridetries();  
@@ -294,8 +294,17 @@ public Hybridetries insertKey(String key) {
         return res;
     }
 
-    //public boolean verif()
+    public int ComptageNil(Hybridetries arbre){
 
+        if(!arbre.isEmpty()) {return 0 + ComptageNil(arbre.eq) + ComptageNil(arbre.inf) +ComptageNil(arbre.sup); }
+
+        return 1;
+    }
+   
+       
+
+
+//regler pb flag visited
 
 
 

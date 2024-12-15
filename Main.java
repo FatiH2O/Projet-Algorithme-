@@ -15,11 +15,11 @@ public class Main {
 
       String[] words=exple_de_base.split(" ");
 
-     for(String word : words){
+     /*for(String word : words){
         tree.insertKey(word);
         System.out.println("****");
 
-      }
+      }µ/
       
 
      
@@ -39,7 +39,7 @@ public class Main {
 
 
 
-      /*tree.insertKey("ha");
+      tree.insertKey("ha");
       System.out.println("****");
       tree.insertKey("hao");
       System.out.println("****");
@@ -55,7 +55,10 @@ public class Main {
       System.out.println("****");
       tree.insertKey("haotgf");
 
-      tree.Recherche(tree, "za");
+      System.out.println(tree.ComptageNil(tree));
+      
+
+     /* tree.Recherche(tree, "za");
       tree.Recherche(tree, "hai");
       tree.Recherche(tree, "haa");
       tree.Recherche(tree, "ha");
@@ -72,9 +75,6 @@ public class Main {
         
         
         
-       
-      
-    
 }
 }
 /*            javac Main.java
