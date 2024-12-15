@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class Main {
 
@@ -32,8 +34,8 @@ public class Main {
       int nb_mots= tree.ComptageMots(tree);
       System.out.println("NB mot "+ nb_mots);*/
 
-      tree. ListeMots(tree);
-      System.out.println(tree. ListeMots(tree).size());
+      ArrayList<String> hh= tree.ListeMots(tree);
+      System.out.println(hh.size());
 
 
 
