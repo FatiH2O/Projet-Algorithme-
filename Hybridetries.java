@@ -301,13 +301,56 @@ public Hybridetries insertKey(String key) {
         return 1;
     }
    
+   
        
 
 
-//regler pb flag visited
+ //regler pb flag visited
 
 
+ public  Set<Integer> hauteur_bis(Hybridetries abr_courant , int cpt_courant, Set<Integer> profondeurs){
+                
+    if (abr_courant.eq.isEmpty()&&abr_courant.inf.isEmpty()&&abr_courant.sup.isEmpty()) {
+        profondeurs.add(cpt_courant);
+        
+        return profondeurs;
+    }else{
 
 
-       
+    if (!abr_courant.inf.isEmpty()){
+        cpt_courant++;
+
+        hauteur_bis(abr_courant.inf, cpt_courant--, profondeurs);
+        
+
+     }
+
+    if (!abr_courant.sup.isEmpty()){
+        cpt_courant++;
+
+        hauteur_bis(abr_courant.sup, cpt_courant--, profondeurs);
+    }
+
+    if (!abr_courant.eq.isEmpty()){
+        cpt_courant++;
+        hauteur_bis(abr_courant.eq, cpt_courant--, profondeurs);
+        }
+
+        
+    }
+    return profondeurs;
+ }
+
+  public int Hauteur(Hybridetries arbre){
+
+    Set<Integer> profondeurs= new HashSet<>();
+    Set<Integer> temp= new HashSet<>();
+    temp= hauteur_bis(arbre , 0, profondeurs);
+    int max = 0;
+    for(Integer i : temp){
+        if(i>max) max=i;
+    }
+    System.out.println(max);
+    return max;
+ }
 }

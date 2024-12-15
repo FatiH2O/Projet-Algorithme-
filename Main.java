@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 
 public class Main {
 
@@ -11,15 +9,15 @@ public class Main {
         
       Hybridetries tree = new Hybridetries();
 
-      String exple_de_base = "A quel genial professeur de dactylographie sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?";
+      String exple_de_base = "A quel genial professeur de dactylographie ";/*sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?";*/
 
       String[] words=exple_de_base.split(" ");
 
-     /*for(String word : words){
+     for(String word : words){
         tree.insertKey(word);
         System.out.println("****");
 
-      }µ/
+      }
       
 
      
@@ -34,12 +32,12 @@ public class Main {
       int nb_mots= tree.ComptageMots(tree);
       System.out.println("NB mot "+ nb_mots);*/
 
-      ArrayList<String> hh= tree.ListeMots(tree);
-      System.out.println(hh.size());
+     /*  ArrayList<String> hh= tree.ListeMots(tree);
+      System.out.println(hh.size());*/
 
 
 
-      tree.insertKey("ha");
+      /*tree.insertKey("ha");
       System.out.println("****");
       tree.insertKey("hao");
       System.out.println("****");
@@ -53,10 +51,13 @@ public class Main {
       System.out.println("****");
       tree.insertKey("haotgf");
       System.out.println("****");
-      tree.insertKey("haotgf");
+      tree.insertKey("haotgf");*/
 
-      System.out.println(tree.ComptageNil(tree));
-      
+
+     
+      tree.Hauteur(tree);
+     
+     
 
      /* tree.Recherche(tree, "za");
       tree.Recherche(tree, "hai");
