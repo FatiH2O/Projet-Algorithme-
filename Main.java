@@ -56,7 +56,7 @@ public class Main {
 
      
       tree.Hauteur(tree);
-     
+      tree.ProfondeurMoyenne(tree);
      
 
      /* tree.Recherche(tree, "za");

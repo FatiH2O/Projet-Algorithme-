@@ -353,4 +353,20 @@ public Hybridetries insertKey(String key) {
     System.out.println(max);
     return max;
  }
+
+ public int ProfondeurMoyenne(Hybridetries arbre){
+
+    Set<Integer> profondeurs= new HashSet<>();
+    Set<Integer> temp= new HashSet<>();
+    temp= hauteur_bis(arbre , 0, profondeurs);
+    int cpt = 0;
+    for(Integer i : temp){
+        cpt=+i;
+    }
+    System.out.println("somme " +cpt);
+    System.out.println("taile  " +temp.size());
+    System.out.println("Moy=  " +cpt/temp.size());
+
+    return cpt/temp.size();
+ }
 }
