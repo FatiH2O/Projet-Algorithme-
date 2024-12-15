@@ -9,7 +9,7 @@ public class Main {
         
       Hybridetries tree = new Hybridetries();
 
-      String exple_de_base = "A quel genial professeur de dactylographie ";/*sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?";*/
+      String exple_de_base = "A quel genial professeur de dactylographie sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?";
 
       String[] words=exple_de_base.split(" ");
 
@@ -18,6 +18,9 @@ public class Main {
         System.out.println("****");
 
       }
+     int nb=tree.Prefixe(tree,"de");
+
+     System.out.println("nb =  "+ nb);
       
 
      
@@ -55,8 +58,8 @@ public class Main {
 
 
      
-      tree.Hauteur(tree);
-      tree.ProfondeurMoyenne(tree);
+      //tree.Hauteur(tree);
+      //tree.ProfondeurMoyenne(tree);
      
 
      /* tree.Recherche(tree, "za");

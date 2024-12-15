@@ -74,7 +74,7 @@ public class Hybridetries  {
             return key.charAt(0);  
         } 
         System.out.println("la clé est vide");
-        return '0';
+        return ' ';
 
     }
 /*récuperer la cle sans la première lettre */
@@ -369,4 +369,48 @@ public Hybridetries insertKey(String key) {
 
     return cpt/temp.size();
  }
+
+
+ public int  Prefixe(Hybridetries arbre,String mot){
+
+    //if(mot==" "){ }
+
+    char p = firstchar(mot.toLowerCase());
+    
+      
+    if(this.isEmpty()){return 0;}
+
+    if(p==' '){
+        if(this.getrac().getcpt()!=0){
+           return 1+ sup.Prefixe(this.sup,mot.toLowerCase())+inf.Prefixe(this.inf,mot.toLowerCase())+eq.Prefixe(this.eq,mot.toLowerCase());
+            }
+        else{
+            return sup.Prefixe(this.sup,mot.toLowerCase())+inf.Prefixe(this.inf,mot.toLowerCase())+eq.Prefixe(this.eq,mot.toLowerCase());
+        }
+    } 
+    
+
+    if(p < this.getrac().getRa()) {
+          return inf.Prefixe(this.inf, mot.toLowerCase());  
+       }
+     
+    else if (p > this.getrac().getRa()) {
+          return sup.Prefixe(this.sup,mot.toLowerCase());
+       }
+      
+    else {
+           if(mot.length()==1&&this.getrac().getcpt()!=0){
+            
+             return 1+ eq.Prefixe(this.eq,remaining(mot.toLowerCase()));
+            }else if(mot.length()==1){
+                return 0 + eq.Prefixe(this.eq,remaining(mot.toLowerCase()));
+            }
+           
+
+           return eq.Prefixe(this.eq,remaining(mot.toLowerCase()));  
+       }
+       
+   }
+
+
 }
