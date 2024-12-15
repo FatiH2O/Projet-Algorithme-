@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -18,9 +20,20 @@ public class Main {
         System.out.println("****");
 
       }
-     int nb=tree.Prefixe(tree,"de");
+      Set<String[]> mots= new HashSet<>();
+      Set<String[]> ya= new HashSet<>();
 
-     System.out.println("nb =  "+ nb);
+      ya= tree.ajout_mots_bis(tree,"",mots);
+
+      for(String[] cple : ya){
+        
+        System.out.println(cple[0]+ " "+ cple[1]);
+
+      }
+
+     //int nb=tree.Prefixe(tree,"de");
+
+     //System.out.println("nb =  "+ nb);
       
 
      

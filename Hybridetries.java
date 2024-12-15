@@ -412,5 +412,78 @@ public Hybridetries insertKey(String key) {
        
    }
 
+   public  Set<String[]> ajout_mots_bis(Hybridetries abr_courant , String mot_courrant, Set<String[]> words){ //pour manipuler des couples
+    
+    String[] couple=new String[2];
 
+    if (abr_courant.isEmpty()) {
+        return words;
+    }
+
+    if (!abr_courant.inf.isEmpty()){
+        ajout_mots_bis(abr_courant.inf, mot_courrant, words);
+
+    }
+
+    if (!abr_courant.sup.isEmpty()){
+         ajout_mots_bis(abr_courant.sup, mot_courrant, words);
+    }
+     // Ajouter le caractère actuel au mot en construction
+    
+    if(abr_courant.getrac().getcpt()==0){ 
+      mot_courrant += abr_courant.getrac().getRa();
+      return ajout_mots_bis(abr_courant.eq, mot_courrant, words);
+
+    }
+    else if(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==true){
+            return ajout_mots_bis(abr_courant.eq, mot_courrant,words);
+
+    }else if(abr_courant.getrac().getcpt()!=0 && abr_courant.getrac().getVisited()==false){
+        mot_courrant += abr_courant.getrac().getRa();
+        abr_courant.getrac().setVisited();
+        couple[0]= mot_courrant;
+        couple[1]= abr_courant.getrac().getcpt() + "";
+        words.add(couple);
+        return ajout_mots_bis(abr_courant.eq, mot_courrant, words);
+
+    }
+    return words;
+}
+
+void reset(){
+    
+    if (!this.inf.isEmpty()){
+        this.getrac().setRa('/');
+        this.getrac().setcpt(0);
+        this.inf.reset();
+
+    }
+
+    if (!this.sup.isEmpty()){
+        this.getrac().setRa('/');
+        this.getrac().setcpt(0);
+
+         this.sup.reset();
+    }
+     // Ajouter le caractère actuel au mot en construction
+    
+    if(this.getrac().getcpt()==0){ 
+        this.getrac().setRa('/');
+        this.getrac().setcpt(0);
+      this.eq.reset();
+
+    }
+    else if(this.getrac().getcpt()!=0 && this.getrac().getVisited()==true){
+             this.eq.reset();
+
+    }else if(this.getrac().getcpt()!=0 && this.getrac().getVisited()==false){
+        this.getrac().setRa('/');
+        this.getrac().setcpt(0);
+         this.eq.reset();
+
+    }
+    
+    
+}
+   
 }
