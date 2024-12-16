@@ -1,8 +1,7 @@
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+
 
 public class Hybridetries  {
 
@@ -77,6 +76,11 @@ public class Hybridetries  {
         return ' ';
 
     }
+
+    public Hybridetries getinf(){
+        return this.inf;
+    }
+     
 /*récuperer la cle sans la première lettre */
     public static String remaining(String key){
 
@@ -88,19 +92,7 @@ public class Hybridetries  {
      }
 
 
-//pas utilisé pour l'instant
-    public static char chari(String key,int i) {
-        try{
-        if (key != null && !key.isEmpty()) {
-            return key.charAt(i);  
-        }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Erreur : " + e.getMessage());
-        }
-        System.out.println("la clé est vide");
-        return '0';
 
-    }
 
     /*longeur de la clé */
     public static int length(String key) {
@@ -133,7 +125,12 @@ public class Hybridetries  {
 }
     public void set_end_of_word(){
         this.racine.setcpt(end_word);
-    };
+    }
+    public void resetCpt(){
+        end_word=0;
+    }
+     
+
 
    
 public Hybridetries insertKey(String key) {
@@ -373,7 +370,7 @@ public Hybridetries insertKey(String key) {
 
  public int  Prefixe(Hybridetries arbre,String mot){
 
-    //if(mot==" "){ }
+    
 
     char p = firstchar(mot.toLowerCase());
     
@@ -412,7 +409,7 @@ public Hybridetries insertKey(String key) {
        
    }
 
-   public  Set<String[]> ajout_mots_bis(Hybridetries abr_courant , String mot_courrant, Set<String[]> words){ //pour manipuler des couples
+   public  Set<String[]> ajout_mots_bis(Hybridetries abr_courant , String mot_courrant, Set<String[]> words){ //pour manipuler des couples mots end_of_word
     
     String[] couple=new String[2];
 
@@ -443,6 +440,8 @@ public Hybridetries insertKey(String key) {
         abr_courant.getrac().setVisited();
         couple[0]= mot_courrant;
         couple[1]= abr_courant.getrac().getcpt() + "";
+
+
         words.add(couple);
         return ajout_mots_bis(abr_courant.eq, mot_courrant, words);
 
@@ -450,11 +449,14 @@ public Hybridetries insertKey(String key) {
     return words;
 }
 
-void reset(){
-    
+
+void reset(){// remet CPT à 0 et tous les noeuds à nul, peut etre pb ptrs null plus que ce qu'il en faut
+    this.resetCpt();
+
     if (!this.inf.isEmpty()){
         this.getrac().setRa('/');
         this.getrac().setcpt(0);
+        
         this.inf.reset();
 
     }
@@ -462,28 +464,84 @@ void reset(){
     if (!this.sup.isEmpty()){
         this.getrac().setRa('/');
         this.getrac().setcpt(0);
-
-         this.sup.reset();
+        this.sup.reset();
     }
-     // Ajouter le caractère actuel au mot en construction
+     
     
-    if(this.getrac().getcpt()==0){ 
+    if(!this.eq.isEmpty()){ 
         this.getrac().setRa('/');
         this.getrac().setcpt(0);
-      this.eq.reset();
+        this.eq.reset();
 
     }
-    else if(this.getrac().getcpt()!=0 && this.getrac().getVisited()==true){
-             this.eq.reset();
-
-    }else if(this.getrac().getcpt()!=0 && this.getrac().getVisited()==false){
-        this.getrac().setRa('/');
-        this.getrac().setcpt(0);
-         this.eq.reset();
-
-    }
-    
+   
     
 }
+
+public static void bubbleSort(String[][] arr) {
+    int n = arr.length;
+    // Parcours du tableau
+    for (int i = 0; i < n - 1; i++) {
+        // Derniers i éléments sont déjà triés
+        for (int j = 0; j < n - 1 - i; j++) {
+            // Comparer le deuxième élément de chaque sous-tableau
+            int integer1=Integer.parseInt(arr[j][1]);
+            int integer2=Integer.parseInt(arr[j + 1][1]);
+            if (integer1-integer2 > 0) {
+                // Échanger les sous-tableaux
+                String[] temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+public Hybridetries Suppression(Hybridetries arbre, String mot){
+    
+
+    Set<String[]> temp= new HashSet<>();
+    Set<String[]> temp2= new HashSet<>();
    
+   
+    int i=0;
+    temp= ajout_mots_bis(arbre,"",temp2);
+    
+    String[][] a_trier= new String[temp.size()][2];
+
+
+    for(String[] couple : temp){
+        a_trier[i++]=couple;
+    }
+
+    //trier l'arbre
+    bubbleSort(a_trier);
+
+    for (String[] pair : a_trier) {
+    System.out.println(pair[0] +  " " + pair[1]);
+    }
+    String[] finaly=new String[a_trier.length];
+   
+    i=0;
+    for(int p=0;p<a_trier.length;p++){
+    if(!(a_trier[p][0].equals(mot))){ finaly[i++]=a_trier[p][0]; }
+
+    
+   }
+   for (String s : finaly) {
+    System.out.println(s);
+}
+   arbre.reset();
+   for(String w : finaly){
+    arbre.insertKey(w);
+    System.out.println("****");
+   }
+   return arbre;
+}
+
+
+
+
+
+
 }
