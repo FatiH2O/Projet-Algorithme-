@@ -1,4 +1,8 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -539,9 +543,20 @@ public Hybridetries Suppression(Hybridetries arbre, String mot){
    return arbre;
 }
 
+/*******************Pour exprerimentation******************************* */
+ public void read(Hybridetries arbre,String filePath) {
+        File file = new File(filePath);
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+       String line;
+       while ((line = reader.readLine()) != null) {
+           // Appliquer une fonction à chaque ligne lue
+           arbre.insertKey(line);
+       }
+       } catch (IOException e) {
+        e.printStackTrace();
+    }
 
-
-
+ }
 
 }
