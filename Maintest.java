@@ -32,18 +32,29 @@ public class Maintest {
         System.out.println("****Temps écoulé Recherche de l'arbre********* "+ (endTime - startTime) + " milisecondes soit "+ (endTime - startTime)/1000.0+ " secondes");
         
             /*************ajout******* */
-
+            tree.setcpt_ins();
             startTime = System.currentTimeMillis();
             tree.insertKey("floccinaucinihilipilification ");
             endTime = System.currentTimeMillis();
             System.out.println("****Temps écoulé insertion dans l'arbre********* "+ (endTime - startTime) + " milisecondes soit "+ (endTime - startTime)/1000.0+ " secondes");
-            /************profondeur************ */
+            tree.getcpt_ins();
+
+            /************recherche************ */
+            tree.setcpt_re();
             startTime = System.currentTimeMillis();
-            tree.ProfondeurMoyenne(tree);
+            tree.Recherche(tree, "sfloccinaucinihilipilification");
             endTime = System.currentTimeMillis();
-            System.out.println("****Temps écoulé profondeurmoyenne de l'arbre********* "+ (endTime - startTime) + " milisecondes soit "+ (endTime - startTime)/1000.0+ " secondes");
+            tree.getcpt_re();
+            System.out.println("****Temps écoulé Recherche de l'arbre********* "+ (endTime - startTime) + " milisecondes soit "+ (endTime - startTime)/1000.0+ " secondes");
 
+            /************hauteur*********** */
+            startTime = System.currentTimeMillis();
+            tree.Hauteur(tree);
+            endTime = System.currentTimeMillis();
+            System.out.println("complexité : nombre de feuille (noeuds avec 3 pointeurs vides) " + tree.getcpt_ha());
+            System.out.println("****Temps écoulé hauteur de l'arbre********* "+ (endTime - startTime) + " milisecondes soit "+ (endTime - startTime)/1000.0+ " secondes");
 
+            
 
 
 

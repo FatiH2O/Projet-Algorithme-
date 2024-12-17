@@ -135,7 +135,21 @@ public class Hybridetries  {
     }
      
 
+    private static int cpt_ins=0;
 
+    public void setcpt_ins(){
+        cpt_ins=0;
+    }
+    public int getcpt_ins(){
+        System.out.println("complexité insertion : nb d'arbre cree" + cpt_ins );
+        return cpt_ins;
+    }
+
+    public int  incr_cpt_ins(){
+        System.out.println("complexité insertion : nb d'arbre cree " + cpt_ins );
+       return cpt_ins+=3;
+
+    }
    
 public Hybridetries insertKey(String key) {
     
@@ -151,6 +165,7 @@ public Hybridetries insertKey(String key) {
             this.inf = new Hybridetries();  
             this.eq = new Hybridetries();
             this.sup = new Hybridetries();
+            incr_cpt_ins();
             return this;
             
         } else { 
@@ -159,8 +174,10 @@ public Hybridetries insertKey(String key) {
             System.out.println("EQ " + this.getrac().getRa()+ " "+ this.getrac().getcpt());  
             this.inf = new Hybridetries();  
             this.eq = new Hybridetries();
-            this.sup = new Hybridetries();  
+            this.sup = new Hybridetries(); 
+            incr_cpt_ins(); 
             this.eq.insertKey(remaining(key)); 
+            
         }
     } else {
         char p = firstchar(key); 
@@ -200,7 +217,15 @@ public Hybridetries insertKey(String key) {
     return this;
 }
 
+    private static int cpt_re=0;
+    public void setcpt_re(){
+        cpt_re=0;
+    }
 
+    public int getcpt_re(){
+        System.out.println("complexité recherche : nb de comparaisons " + cpt_re );
+        return cpt_re;
+    }
     public boolean  Recherche(Hybridetries arbre,String mot){
 
      if(mot==" "){System.out.println("false " + this.getrac().getcpt());return false;}
@@ -209,7 +234,7 @@ public Hybridetries insertKey(String key) {
      
        
      if(this.isEmpty()){System.out.println("false " + this.getrac().getcpt());return false;}
-
+        cpt_re+=3;
      if (p < this.getrac().getRa()) {
            return inf.Recherche(this.inf, mot.toLowerCase());  
         }
@@ -308,12 +333,16 @@ public Hybridetries insertKey(String key) {
 
  //regler pb flag visited
 
+ private static int cpt_ha=0;
 
+ public int getcpt_ha(){
+    return cpt_ha;
+ }
  public  Set<Integer> hauteur_bis(Hybridetries abr_courant , int cpt_courant, Set<Integer> profondeurs){
                 
     if (abr_courant.eq.isEmpty()&&abr_courant.inf.isEmpty()&&abr_courant.sup.isEmpty()) {
         profondeurs.add(cpt_courant);
-        
+        cpt_ha+=2;
         return profondeurs;
     }else{
 
@@ -342,8 +371,10 @@ public Hybridetries insertKey(String key) {
     return profondeurs;
  }
 
+   
   public int Hauteur(Hybridetries arbre){
-
+  
+    
     Set<Integer> profondeurs= new HashSet<>();
     Set<Integer> temp= new HashSet<>();
     temp= hauteur_bis(arbre , 0, profondeurs);
