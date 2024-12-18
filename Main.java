@@ -18,8 +18,33 @@ public class Main {
         System.out.println("****");
 
       }
-     tree.Suppression(tree, "genial");
-     tree.Recherche(tree, "genial");
+      /***test recherche****/
+      tree.Recherche(tree, "genial");
+      tree.Suppression(tree, "genial");
+      tree.Recherche(tree, "genial");
+
+      /***test Comptage, doit afficher 34 apres la suppressio de "geial"****/
+
+     // System.out.println("nb de mot dans l'arbre " +tree.ComptageMots(tree));
+
+      /** test ListMots*** */
+      System.out.println("liste de mots dans l'odre alphabetique " );
+      tree.ListeMots(tree);
+
+      /*****teste hauteur*** */
+      tree.Hauteur(tree);
+
+      /***test Profondeurmoyenne()  */
+      tree.ProfondeurMoyenne(tree);
+
+      /*****Test Prefixe()**** */
+      System.out.println("dactylo est prefixe de " + tree.Prefixe(tree, "dactylo")+ " mots dans l'arbre");
+
+      /***Test Suppression()*** */
+      tree.Recherche(tree, "redevables");
+      //tree.Suppression(tree, "redevables");
+      tree.Recherche(tree, "redevables");
+
       //Set<String[]> mots= new HashSet<>();
      // Set<String[]> ya= new HashSet<>();
 
