@@ -25,7 +25,7 @@ public class Main {
 
       /***test Comptage, doit afficher 34 apres la suppressio de "geial"****/
 
-     // System.out.println("nb de mot dans l'arbre " +tree.ComptageMots(tree));
+     System.out.println("nb de mot dans l'arbre " +tree.ComptageMots(tree));
 
       /** test ListMots*** */
       System.out.println("liste de mots dans l'odre alphabetique " );
@@ -42,73 +42,17 @@ public class Main {
 
       /***Test Suppression()*** */
       tree.Recherche(tree, "redevables");
-      //tree.Suppression(tree, "redevables");
+      tree.Suppression(tree, "redevables");
       tree.Recherche(tree, "redevables");
 
-      //Set<String[]> mots= new HashSet<>();
-     // Set<String[]> ya= new HashSet<>();
-
-     // ya= tree.ajout_mots_bis(tree,"",mots);
-
-      /*for(String[] cple : ya){
-        
-        System.out.println(cple[0]+ " "+ cple[1]);
-
-      }*/
-
-     //int nb=tree.Prefixe(tree,"de");
-
-     //System.out.println("nb =  "+ nb);
-      
-
      
-      /*for(String word : words){
-        
-        tree.Recherche(tree,word);
-        
-        
-      }
-
-      
       int nb_mots= tree.ComptageMots(tree);
-      System.out.println("NB mot "+ nb_mots);*/
+      System.out.println("NB mot "+ nb_mots);
 
-     /*  ArrayList<String> hh= tree.ListeMots(tree);
-      System.out.println(hh.size());*/
-
+    
 
 
-      /*tree.insertKey("ha");
-      System.out.println("****");
-      tree.insertKey("hao");
-      System.out.println("****");
-      tree.insertKey("za");
-      System.out.println("****");
-      tree.insertKey("hai");
-      System.out.println("****");
-      tree.insertKey("haa");
-      System.out.println("****");
-      tree.insertKey("bi");
-      System.out.println("****");
-      tree.insertKey("haotgf");
-      System.out.println("****");
-      tree.insertKey("haotgf");*/
-
-
-     
-      //tree.Hauteur(tree);
-      //tree.ProfondeurMoyenne(tree);
-     
-
-     /* tree.Recherche(tree, "za");
-      tree.Recherche(tree, "hai");
-      tree.Recherche(tree, "haa");
-      tree.Recherche(tree, "ha");
-      tree.Recherche(tree, "hao"); 
-      tree.Recherche(tree, "bi");
-      tree.Recherche(tree, "haotgf");
-      tree.Recherche(tree, "hiiiiiii");
-      tree.Recherche(tree, "h");*/
+    
 
       
         
@@ -119,5 +63,3 @@ public class Main {
         
 }
 }
-/*            javac Main.java
-              java Main            */
